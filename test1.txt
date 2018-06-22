@@ -1,9 +1,0 @@
-Testing 1111
-Update
-Modify the file
-<<<<<<< HEAD
-MyChanged again
-=======
-Someone Changed again
->>>>>>> 163f9eeef966c5f903e6c40fcd2a1f4053b5ee2a
-
