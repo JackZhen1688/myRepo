@@ -1,7 +1,0 @@
-This is testing in Developer branch
-Changed the file from remote banch
-Chanage the file from local branch
-Changed in locat master branch
-Changed the file from remote banch again
-New line...
-Dev...update
