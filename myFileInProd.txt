@@ -1,8 +1,2 @@
-this is testing file from master branch
-TestBBBB.....
-Person B add this line after Person A changed and Checked
-TestingAAA ....
-Add this new line from master branch directly which prosume person A checked in this modify file
-person B will update the same file later.
-Add both A and B 
-Jack..
+This is testing file from master branch remote
+
