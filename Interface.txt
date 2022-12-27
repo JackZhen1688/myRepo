@@ -1,0 +1,176 @@
+Beebole(TimeSheet):jack.zhen1688@gmail.com/JackieChen63!!
+Teams: xiaoming.zhen.ctr@mail.mil
+Amazon WorkSpace:(FRpdt+NE7MLG)   
+
+SANWeb:https://san.dsca.mil/     (JackieChen1963!!) 
+SFG:   sftp dcsa031@sfg-share.csd.disa.mil
+
+PROD():wildcat.okc.disa.mil  
+(ngitftp or ftpatrrs/KO)_ko0-KO)_ko0- )
+QA():utinh701 
+
+DEV(Dev2):udsca-solt71-DSAMSDB01
+(xzhen/Ch@ngeme1234||dsamsdba/1qaz2wsx!QAZ@WSX)
+script:/interface/u3/scripts
+Data:  /interface/u3/data
+
+Interface log:
+/interface/production/audit/armyanalyzo.aud.2232501:00
+ngitftp log:
+/dsams/ngitftp/legi/log/202211.log
+
+No Input
+Body empty
+
+================================================
+1.DD2875 (Requesting a new user ID on utinhr16@csd.disa.mil for DSAMS production access)
+2.DD2875 (Requesting a new user ID on utinh701@csd.disa.mil for DSAMS QA access)
+3.RCPAMS (Requesting a new user ID)
+4.SCIP       (Access)
+5.SAN-Server (Access)
+===
+The config change was:
+
+Splunk
+================================
+splunk@a1l-splunk-ds:~/etc/deployment-apps/dsca_san_db_inputs/default>more inputs.conf
+[monitor://D:\Program Files\IF103 Apps\log_dir]
+disabled = true
+sourcetype = dsca:san:db_logs
+index = dsca_san
+index=dsca_san host="P1W-SAN-DB" sourcetype="dsca:san:db_logs" ERROR
+
+
+dsca-cloud\xzhen.dev (TTqwertyuiop11!!)
+\\ADM-WIN-FS1.cloud.dsca.mil
+======================================
+140.17.64.93 (DEV DB-->SSMS)
+140.17.64.59 (Jump)
+140.17.64.29 (PROD DB)
+
+140.17.64.88 (DEV IIS)
+140.17.64.26 (PROD IIS)
+
+140.17.64.94 (DEV IIS)
+
+
+nslookup san.dsca.mil
+
+SANWeb Portal, ISAN, SC-TMS, PTMS, SCWDD, SC Certification Center, and SAARMS
+
+Security Assistance Network (SAN)
+Security Cooperation (SC)
+SFG(secure file gateway) to cloud
+Foreign Visits System(FVS)
+Regional Center Personal Activity Management System(RCPAMS)
+Training Military Articles and Services List (T-MASL)
+
+The Security Assistance Network (SAN) is a portal through which the Security Cooperation – 
+Training Management System (SC-TMS) and the International Affairs Certification Program (IACP) can be accessed
+
+exchange Security Cooperation (SC) training and budget information between overseas Security Cooperation Offices (SCO),
+
+
+
+================================
+SAN
+DB: D1W-DB  (rd to db)
+\\Cloud access for DEVBBOX
+d1w-san-devbox1 140.17.64.94
+
+http://localhost:23069/
+
+SCIP
+ HQ1000 
+  https://dev.scip.dsca.mil/welcome
+  \\scipdev-app\Tomcat\webapps
+com.plumtree.remote.portlet.ProxyPortletUser.getUserName(ProxyPortletUser.java 50)
+c.p.remote.portlet.ProxyPortletUser :GET /dsca1000/heartbeat.html, parameters={}
+us.scportal.htme.service.UserOamService- Identity: uid=robrien3,ou=People,ds=scip,dc=mil
+
+
+
+Main Board (JIRA dashboard)
+https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=352&projectKey=SANWEB&view=detail&selectedIssue=SANWEB-17
+https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=352&projectKey=SANWEB&view=detail&selectedIssue=SANWEB-257 (Splunk Project)
+
+1.SAN/SANWEB:
+  Main Confluence Board:
+	https://apps.dsca.mil/wiki/display/ISB/SAN
+	https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=352&projectKey=SANWEB&selectedIssue=SANWEB-244
+  SANEB: 
+	https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=352&projectKey=SANWEB&selectedIssue=SANWEB-264
+    https://apps.dsca.mil/wiki/pages/viewpage.action?pageId=94241859
+  SAN Application: 
+	https://san.dsca.mil/
+	https://apps.dsca.mil/wiki/display/ISB/SAN+-+Architecture
+	https://apps.dsca.mil/jira/browse/SANWEB-246
+  SAN (Security Assistance Network)
+	https://apps.dsca.mil/wiki/display/ISB/SAN
+	https://apps.dsca.mil/wiki/pages/viewpage.action?pageId=94241859
+	https://apps.dsca.mil/wiki/display/SANWeb/Team
+  Splunk
+    https://splunk.apps.dsca.mil/en-US/app/dsca_app_dsams/search
+    https://apps.dsca.mil/wiki/display/ISB/Splunk
+  SANWeb Information:
+    https://apps.dsca.mil/wiki/display/ISB/SAN+Web+Information
+  Infrasturucture:
+	https://apps.dsca.mil/wiki/display/ISB/Infrastructure+Support+Team
+2.1000 System
+	https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=287&projectKey=S1000&selectedIssue=S1000-48
+3.CTS
+    https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=364&projectKey=CTS&selectedIssue=CTS-120
+    *Split and Combine pdf files Issue with CTS
+  1.https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/split-pdf/
+  2.https://developer.adobe.com/document-services/docs/overview/pdf-services-api/howtos/combine-pdf/
+4.DCCS: 
+    https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=285&projectKey=DCCS&selectedIssue=DCCS-10
+5.FMSCS: 
+    https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=286&projectKey=FMFCS&selectedIssue=FMFCS-112
+6.SCWD:
+   https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=328&projectKey=SCWD&selectedIssue=SCWD-103
+   *SWCD Database menu missing - Tracks training System
+7.Term Liability:
+   https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=350&projectKey=TL&selectedIssue=TL-4
+8.U100K:
+   https://apps.dsca.mil/jira/secure/RapidBoard.jspa?rapidView=336&projectKey=UK&selectedIssue=UK-5
+9.SCIP  
+   https://www.scportal.us/home/
+
+
+
+
+
+https://apps.dsca.mil/wiki/display/SANWeb/Documentation
+https://apps.dsca.mil/wiki/pages/viewpage.action?pageId=195364067
+
+S:\Products\DESIGN\Technical Design Specifications\release 23.1
+S:\Teams\Interface
+
+http://localhost:8080/dsca1000/index.jsp
+==========================
+	<Resource name="jdbc/dsca1000db" 
+	    auth="Container" 
+		defaultAutoCommit="false" 
+		defaultReadOnly="true" 
+		driverClassName="oracle.jdbc.OracleDriver" 
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		initialSize="15" 
+		jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=15000, maxQueries=50)" 
+		maxActive="50" 
+		maxAge="3600000" 
+		maxIdle="25" 
+		maxWait="3000" 
+		minEvictableIdleTimeMillis="120000" 
+		minIdle="15"
+		password="Q!Bnm!y1asdf6TWQAS1h" 
+		removeAbandoned="true" 
+		removeAbandonedTimeout="120" 
+		singleton="true" 
+		testOnBorrow="true" 
+		timeBetweenEvictionRunsMillis="5000" 
+		type="javax.sql.DataSource" 
+		url="jdbc:oracle:thin:@fms100.dsadc.mil:1521:scipdev" 
+		username="HQ_1000_APP" 
+		validationQuery="Select 1 From dual" 
+		validationQueryTimeout="30" />

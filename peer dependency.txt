@@ -1,0 +1,131 @@
+  npm install -g npm
+  rm package-lock.json
+  rm -rf node_modules
+  npm cache clean        --force
+  npm install            --force
+  npx check-peer-dependencies --npm
+
+  npm ls eslint-config-airbnb
+  npm view eslint-config-airbnb@* version
+  npm view eslint-config-airbnb@9.0.1
+  npm i -D eslint-config-airbnb@9.0.1
+  
+  npm uninstall angular-crumbs --force
+  npm uninstall material-moment-adapter --force
+  npm install material-moment-adapter --force
+  npm config set legacy-peer-deps true
+  --legacy-peer-deps
+  
+  ajv-keywords@3.2.0 requires a peer of ajv@^6.0.0
+  manually install ajv or update it to version 6 (if you already have a lower version installed)
+
+  ❌  @angular/common >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ❌  @angular/core >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ❌  @angular/router >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ❌  @angular/platform-browser >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+ 
+==>Upgrade   
+ ❌ jasmine-core >=3.8 is required by karma-jasmine-html-reporter@1.7.0) (3.4.0 is installed)
+    means: jasmine-core need install(if not installed @3.8) or update(if install) to version:3.8
+    a) jasmine-core is in package.json       	
+	Solution:
+	  Search for version:3.4.0 of jasmine-core in package.json
+	  and upgrade the jasmine-core version from 3.4.0 to 4.0.0.
+	i.e., 
+	  "jasmine-core": "~3.4.0"
+	   replace with
+	  "jasmine-core": "~4.0.0"
+	  
+==>Downgrade
+ ❌ @angular/core ^12.0.0 || ^13.0.0-0 is required by @angular/material-moment-adapter@12.2.13) (8.2.14 is installe
+    a) @angular/material-moment-adapter is in package.json 
+	Solution:
+	  Search for version:12.0.1 of @angular/material-moment-adapter in package.json
+	  and downgrade the jasmine-core version from 12.0.1 to 8.2.3.
+	i.e.,
+      "@angular/material-moment-adapter": "^12.0.1",
+	 replace with 
+      "@angular/material-moment-adapter": "^8.2.3",	  
+	  
+==>Modify	   
+ ❌ browserslist >= 4.21.0 is required by update-browserslist-db@1.0.4) (4.10.0 is installed)
+    a) browserslist is not in package.json
+	b) browserslist is in package-lock.json
+	Solution:
+	  Search for version: 4.10.0 of browserslist in package-lock.json
+	  and replace with version 4.21.0 of browserslist.
+	i.e.,  
+    "node_modules/browserslist": {
+      "version": "4.10.0",
+      "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-4.10.0.tgz",
+      "integrity": "sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==",
+     replace with
+      "version": "4.21.1",
+      "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-4.21.1.tgz",
+      "integrity": "sha512-Nq8MFCSrnJXSc88yliwlzQe3qNe3VntIjhsArW9IJOEPSHNx23FalwApUVbzAWABLhYJJ7y8AynWI/XM8OdfjQ==",
+  
+    "browserslist": {
+      "version": "4.10.0",
+      "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-4.10.0.tgz",
+      "integrity": "sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==",
+     replace with
+      "version": "4.21.1",
+      "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-4.21.1.tgz",
+      "integrity": "sha512-Nq8MFCSrnJXSc88yliwlzQe3qNe3VntIjhsArW9IJOEPSHNx23FalwApUVbzAWABLhYJJ7y8AynWI/XM8OdfjQ==",
+
+    "dependencies": {
+	   "browserslist": "4.10.0", 
+	 replace with 
+	   "browserslist": "4.21.1", 
+	"dependencies": {
+	   "browserslist": "4.10.0", 
+	 replace with 
+	   "browserslist": "4.21.1",
+	       
+ 
+
+  ✅  @angular/common ^8.0.0 || ^9.0.0-0 is required by @angular/cdk@8.2.3 (8.2.14 is installed)
+  ✅  @angular/common 8.2.14 is required by @angular/forms@8.2.14 (8.2.14 is installed)
+  ✅  @angular/common ^8.0.0 || ^9.0.0-0 is required by @angular/material@8.2.3 (8.2.14 is installed)
+  ✅  @angular/common 8.2.14 is required by @angular/platform-browser@8.2.14 (8.2.14 is installed)
+  ✅  @angular/common 8.2.14 is required by @angular/platform-browser-dynamic@8.2.14 (8.2.14 is installed)
+  ✅  @angular/common 8.2.14 is required by @angular/router@8.2.14 (8.2.14 is installed)
+  ✅  @angular/common ^8.0.0 || ^9.0.0-0 is required by @material-extended/mde@2.3.1 (8.2.14 is installed)
+  ✅  @angular/common >=7.2.0 is required by ng2-charts@2.4.3 (8.2.14 is installed)
+  ✅  @angular/common ^6.0.0 || ^7.0.0 || ^8.0.0 is required by ngx-mask@8.2.0 (8.2.14 is installed)
+  ✅  @angular/common >=6.0.0 is required by ngx-treeview@6.0.2 (8.2.14 is installed)
+  ✅  @angular/core >=2.3.1 <10.0.0 || >9.0.0-beta <10.0.0 || >9.1.0-beta <10.0.0 || >9.2.0-beta <10.0.0 is required 
+by codelyzer@5.2.2 (8.2.14 is installed)
+  ✅  @angular/core 8.2.14 is required by @angular/animations@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core ^8.0.0 || ^9.0.0-0 is required by @angular/cdk@8.2.3 (8.2.14 is installed)
+  ✅  @angular/core 8.2.14 is required by @angular/common@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core 8.2.14 is required by @angular/forms@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core ^8.0.0 || ^9.0.0-0 is required by @angular/material@8.2.3 (8.2.14 is installed)
+  ❌  @angular/core ^12.0.0 || ^13.0.0-0 is required by @angular/material-moment-adapter@12.2.13) (8.2.14 is installe
+d)
+  ✅  @angular/core 8.2.14 is required by @angular/platform-browser@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core 8.2.14 is required by @angular/platform-browser-dynamic@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core 8.2.14 is required by @angular/router@8.2.14 (8.2.14 is installed)
+  ✅  @angular/core ^8.0.0 || ^9.0.0-0 is required by @material-extended/mde@2.3.1 (8.2.14 is installed)
+  ❌  @angular/core >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ✅  @angular/core >=2.0.0 || >=4.0.0 || >=5.0.0 is required by angular-font-awesome@3.0.4 (8.2.14 is installed)    
+  ✅  @angular/core >=7.2.0 is required by ng2-charts@2.4.3 (8.2.14 is installed)
+  ✅  @angular/core ^6.0.0 || ^7.0.0 || ^8.0.0 is required by ngx-mask@8.2.0 (8.2.14 is installed)
+  ✅  @angular/core >=6.0.0 is required by ngx-treeview@6.0.2 (8.2.14 is installed)
+  ❌  @angular/material 12.2.13 is required by @angular/material-moment-adapter@12.2.13) (8.2.3 is installed)
+  ✅  @angular/platform-browser 8.2.14 is required by @angular/forms@8.2.14 (8.2.14 is installed)
+  ✅  @angular/platform-browser 8.2.14 is required by @angular/platform-browser-dynamic@8.2.14 (8.2.14 is installed)  ✅  @angular/platform-browser 8.2.14 is required by @angular/router@8.2.14 (8.2.14 is installed)
+  ❌  @angular/platform-browser >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ❌  @angular/router >=2.0.0 <7.0.0 is required by angular-crumbs@3.0.1) (8.2.14 is installed)
+  ❌  browserslist >= 4.21.0 is required by update-browserslist-db@1.0.4) (4.10.0 is installed)
+  ❌  browserslist >= 4.21.0 is required by update-browserslist-db@1.0.4) (4.10.0 is installed)
+  ❌  jasmine-core >=3.8 is required by karma-jasmine-html-reporter@1.7.0) (3.4.0 is installed)
+  ✅  zone.js ~0.9.1 is required by @angular/core@8.2.14 (0.9.1 is installed)
+  ❌  zone.js ^0.8.12 is required by angular-crumbs@3.0.1) (0.9.1 is installed)
+  
+
+  ✅  ajv ^8.0.0 is required by ajv-formats@2.1.1 (8.9.0 is installed)
+  ✅  ajv ^8.8.2 is required by ajv-keywords@5.1.0 (8.9.0 is installed)
+  ❌  ajv ^6.9.1 is required by ajv-keywords@3.5.2) (8.9.0 is installed)
+  ❌  ajv ^6.9.1 is required by ajv-keywords@3.5.2) (8.9.0 is installed)
+  ❌  ajv ^6.9.1 is required by ajv-keywords@3.5.2) (8.9.0 is installed)
