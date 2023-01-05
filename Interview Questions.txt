@@ -1,0 +1,916 @@
+Java Basic
+===========
+1.  What is Java?
+    Java is the high-level, object-oriented, robust, secure programming language, platform-independent, high performance, Multithreaded, and portable programming language. 
+2.  What is What is the platform?
+    A platform is the hardware or software environment in which a piece of software is executed. 
+	There are two types of platforms, software-based and hardware-based. Java provides the software-based platform.
+3.  What are the main differences between the Java platform and other platforms?
+    Java is the software-based platform
+	Java is executed on the top of other hardware platforms 
+4.  Why is Java a platform independent language?	
+    The Java compiler compiles the code and then converts it to platform-independent byte code which can be run on multiple systems.
+5.  What are Java Programming language features?
+    – High Performance
+    – Platform Independent
+    – Robust
+    – Multi-threaded
+    – Simple
+    – Secure
+6.  What is JDK?
+    It is a combined Package of JRE and Developer tools used for designing Java Applications 	
+7.  What is the difference between JDK, JRE, and JVM?	
+	JVM has a Just in Time (JIT) compiler tool that converts all the Java bytecode into the low-level compatible machine language. Therefore, it runs faster than the regular application.
+    JRE has class libraries and other JVM supporting files for execution of the Java program. But it doesn’t have any tool for java development such as compiler or debugger.
+    JDK has tools that are required to write Java Programs and uses JRE to execute them. It has a compiler, Java application launcher, and an applet viewer.
+8.  What is a JIT compiler?
+    JIT compiler refers to Just in Time compiler which converts Java bytecode into the low-level compatible machine language. 
+9.  What is difference between PATH and Classpath?
+	PATH is used by the operating system while Classpath is used by JVM to locate Java binary
+	
+OOPs Concepts
+=============
+9.  What is Object-Oriented Programming and concepts? 
+    OOPs is a programming paradigm centred around objects rather than functions.
+    Aggregation– All objects have their separate lifecycle, but ownership is present. No child object can belong to some other object except for the parent object
+    Association– The relationship between two objects, where each object has its separate lifecycle. There is no ownership
+    Class– A group of similar entities
+    Composition– Also called the death relationship, it is a specialized form of aggregation. Child objects don't have a lifecycle. As such, they automatically get deleted if the associated parent object is deleted
+    Inheritance– When an object acquires the properties of some other object, it is called inheritance. It results in the formation of a parent-child relationship amongst classes involved. Offers a robust and natural mechanism of organizing and structuring software
+    Abstraction– Abstraction is a process of hiding the implementation details and showing only functionality to the user
+    Polymorphism- Can perform a single action in different ways. example: Overwrite the superclass method in different ways
+	Encapsulation– Keep the object visibility from outside world. example: Modifiers (pulic/private/protected)
+10. Why is Java not completely object-oriented?
+    Java is not considered as a 100% object-oriented programming language because it still makes use of eight 
+    or more primitive data types like int, float double, etc.   
+11. What is an Object?
+    An object is a software bundle of related state and behavior. 
+12. What Is a Class?
+	A class is a blueprint or prototype from which objects are created.
+13. How to make a read-only class in Java?
+    A class can be made read-only by making all of the fields private. 
+14. How can we create an immutable class in Java?
+    We can create an immutable class by defining a final class having all of its members as final. 
+15. What is a nested class?
+    The nested class can be defined as the class which is defined inside another class or interface.
+	There are two types of nested classes, static nested class, and non-static nested class. The non-static nested class can also be called as inner-class
+	class Java_Outer_class{     
+	  class Java_Nested_class{          nested/inner
+	    //code    
+	  }  
+      class static Java_Nested_class{   nested 
+	    //code    
+	  }    
+	} 
+16. What are the advantages of Java inner classes?
+    a) it can access all the members (data members and methods) of the outer class including private.
+	b) It is a more readable and maintainable code 
+20. What is Java instanceOf operator?
+    It's type comparison operator and returns either true or false.
+	class Simple1{  
+	  public static void main(String args[]){  
+	    Simple1 s=new Simple1();  
+	    System.out.println(s instanceof Simple1);//true  
+	  }  
+	} 	
+21. What is the purpose of the Runtime class
+    Java Runtime class is used to interact with a java runtime environment
+	Runtime.getRuntime(): process, invoke GC, get total and free memory, etc.
+22. How will you invoke any external process in Java?
+    Runtime.getRuntime().exec("notepad");
+23. What is super in java?
+    The super keyword in Java is a reference variable that is used to refer to the immediate parent class object. 
+24. Which class is the superclass for all the classes?
+	The object class is the superclass of all other classes in Java.
+25. What are wrapper classes?	
+	Wrapper classes are classes that allow primitive types to be accessed as objects.
+26. What is Object Cloning?
+	The object cloning is used to create the exact copy of an object
+	protected Object clone() throws CloneNotSupportedException{
+	  return (Object)super.clone();
+	}
+27. What are the packages in Java? State some advantages of Packages in Java?	
+    A package is a namespace for organizing classes and interfaces in a logical manner. 
+	a) Classes of other programs can be reused.
+    b) Two classes with the same can exist in two different packages.
+    c) Packages can hide classes, thus denying access to certain programs and classes meant for internal use only.
+28. How can we access some class in another class in Java?
+	a) By using the fully qualified name: To access a class in a different package, either we must use the fully qualified name of that class, or we must import the package containing that class.
+	b) By using the relative path, We can use the path of the class that is related to the package that contains our class. It can be the same or subpackage.
+29. Is it possible to import the same class or package twice in Java and what happens to it during runtime?
+	It is possible to import a class or package more than once, however, it is redundant because the JVM internally loads the package or class only once.
+30. How to define classes in Java?
+    Class are user-defined data types and behave like built-in types of a programming language
+31. Does an empty file name with .java extension a valid file name?
+    Yes, Java permits to save our java file by .java only.
+32. What is a ClassLoader?
+	Classloader is a subsystem of JVM which is used to load class files. 
+    Bootstrap: rt.jar file which contains all class files of Java Standard Edition
+	Extension: It loads thejar files located inside $JAVA_HOME/jre/lib/ext directory.
+	System/Application: It loads the class files from the classpath. 
+33. What do you mean by Constructor? Can a constructor return a value?
+    A constructor is a method that has the same name as that of the class to which it belongs, It can be overloaded.
+    Yes, A constructor can return a value.
+34. How many types of constructor are used in Java?
+    Parameterized Constructor: Parameterized constructor accepts the parameters with which users can initialize the instance variables. Users can initialize the class variables dynamically at the time of instantiating the class.
+    Default constructor: This type doesn’t accept any parameters; rather, it instantiates the class variables with their default values. It is used mainly for object creation.	
+35. What is the purpose of a default constructor?
+    The purpose of the default constructor is to assign the default value to the objects.
+36. Is constructor inherited? 
+    No
+37. Can you make a constructor final?
+    No
+38. Can we make constructors static?
+    No
+39. What are the differences between constructor and method of a class in Java?
+	The name should be equal to the class name/Constructor used for initializing the object state/Constructor has no return type
+	The name of the method can have any name  /Constructor used for exposing the object's behavior/Constructor has a return type.
+40. Explain the concept of constructor overloading
+	class Hospital {
+	  int variable1, variable2;
+	  double variable3;
+	  public Hospital(int doctors, int nurses) {
+		 variable1 = doctors;
+		 variable2 = nurses;
+  	  }
+	  public Hospital(int doctors) {
+		 variable1 = doctors;
+	  }
+	  public Hospital(double salaries) {
+		 variable3 = salaries
+	  }
+	}
+41. Explain public static void main(String[] args) in Java
+    public: It is an access modifier defining the accessibility of the class or method. Any Class can access the main() method defined public in the program.
+    static: The keyword indicates the variable, or the method is a class method. The method main() is made static so that it can be accessed without creating the instance of the class. When the method main() is not made static, the compiler throws an error because the main() is called by the JVM before any objects are made, and only static methods can be directly invoked via the class.
+    void: It is the return type of the method. Void defines the method does not return any type of value.
+    main: JVM searches this method when starting the execution of any program, with the particular signature only.
+    String args[]: The parameter passed to the main method.	
+42. Will the program run if we write static public void main?
+    Yes, the program will successfully execute if written so. Because, 
+    in Java, there is no specific rule for the order of specifiers
+43. What happens if there are multiple main methods inside one class in Java?
+    The program can't compile as the compiler says that the method has been already defined inside the class
+44. What happens when the main() isn't declared as static?
+    The program may be compiled correctly, throws a run time error that reads "NoSuchMethodError."	
+45. Can you run a code before executing the main method?
+    Yes. We will be using a static block of code when creating the objects at the class's load time	
+46. Is delete, next, main, exit or null keyword in java?
+    No
+47. Explain ‘this’ keyword in Java.
+    The "this" keyword is used to refer to the current class properties like method, instance, variable, and constructors.
+48. Explain ‘super’ keyword in Java
+    The "super" keyword refers to the immediate parent class object.
+49. Differentiate between this() and super()
+	this():It is used to call the default constructor of the same class
+	super():It is used to call the default constructor of the parent/base class.
+50. Explain the concept of boxing, unboxing, autoboxing, and auto unboxing.
+	Boxing: The concept of putting a primitive value inside an object is called boxing.
+	Unboxing: Getting the primitive value from the object.
+	Autoboxing: Assigning a value directly to an integer object.
+	Auto unboxing: Getting the primitive value directly into the integer object.
+51. How to define Singleton Classes in Java?  
+    Singleton class is the class which can not be instantiated more than once
+	public class Singleton{
+	  public static void main(String args[]){
+	     Database db1;
+		 db1= Singleton.getInstance();
+	  }
+	}
+	public static Database getInstance() {
+      if(dbObject == null) {
+         dbObject = new Database();
+      }
+      return dbObject;
+    }
+52. Java works as “pass by value” or “pass by reference” phenomenon?	
+    Java always works as a “pass by value”. 
+	class Example {
+
+       int a = 10;
+	   void call(int a) {
+		  a = a+10;
+   	   }	
+	   public static void main(String[] args)
+	   {
+		  Example eg = new Example();
+          System.out.println("Before call-by-value: " + eg.a);
+          eg.call(50510);
+          System.out.println("After call-by-value: " + eg.a);	   }
+	   }
+	}
+	Before call-by-value: 10
+	After  call-by-value: 10	
+53. What is differentiate between static, instance and local variables?
+    A static variables can be created by declaring them static that are common to all objects and accessed without using a particular object 
+    A instance variables is declared inside a class, and the scope is limited to only a specific object.
+    A local variable can be anywhere inside a method or a specific block of code. 
+54. What is the default value stored in instance Variables?	
+    String: null  Number: 0  Boolean: false
+55. What is the default value of the local variables?
+    The local variables are not initialized to any default value.
+56. What is an Exception?
+    An exception is an event that occurs during the execution of a program that disrupts the normal flow of instructions.
+57. What are various types of Exceptions in Java?
+    Checked Exceptions – Classes that extend Throwable class, except Runtime exception and Error, are called checked exceptions. 
+	        Such exceptions are checked by the compiler during the compile time. These types of exceptions must either have appropriate try/catch blocks or be declared using the throws keyword. ClassNotFoundException is a checked exception.
+    Unchecked Exceptions – Such exceptions aren't checked by the compiler during the compile time. 
+	        As such, the compiler doesn't necessitate handling unchecked exceptions. Arithmetic Exception and ArrayIndexOutOfBounds Exception are unchecked exceptions.
+58. Explain the Java Exception Hierarchy?
+    java.lang.Object->java.lang.Throwable|->java.lang.Excepton->java.lang.RuntimeException
+	                                     |->java.lang.Error
+58. What is the difference between Exception and Error in Java?
+     Error: indicates serious problems that a reasonable application should not try to catch.
+     Exception: indicates conditions that a reasonable application might want to catch.										 
+59. What is different between throw keyword and the throws keyword?										 
+    While the throws keyword signature of method to allow declaring an exception, the throw keyword is used to explicitly throw an exception.									 
+60. How does an exception propagate in the code?
+    The method call stack and goes into the caller method where the process of matching the catch block is performed.
+61. Can subclass overriding method declare an exception if parent class method doesn't throw an exception?
+    Yes but only unchecked exception not checked.
+62. What are the Memory Allocations available in Java?  
+ 	Class (Method) Memory: Class Area stores per-class structures such as the runtime constant pool, field, method data, and the code for methods.
+	Heap Memory:  It is the runtime data area in which the memory is allocated to the objects
+	Stack Memory: Java Stack stores frames. It holds local variables and partial results, and plays a part in method invocation and return.
+	Program Counter-Memory: PC (program counter) register contains the address of the Java virtual machine instruction currently being executed.
+	Native Method Stack Memory: It contains all the native methods used in the application.
+63. What are the differences between Heap and Stack Memory in Java?
+    Stack is generally used to store the order of method execution and local variables. 
+    Heap memory is used to store the objects									 
+64. What is OutOfMemoryError in Java?
+    The OutOfMemoryError exception is thrown when the JVM is not able to allocate an object due to running out of memory.
+	a) Holding objects for too long
+    b) Trying to process too much data at the same time
+    c) Using a third-party library that caches strings
+    d) Using an application server that doesn't perform a memory cleanup post the deployment
+    e) When a native allocation can't be satisfied
+65. What is method Overriding in Java?
+    Method Overriding in Java allows a subclass to offer a specific implementation of a method that has already been provided by its parent or superclass.
+	class HumanBeing {
+	  public int walk (int distance, int time) {
+	    int speed = distance / time;
+		return speed;
+	  }
+	}
+	class Athlete extends HumanBeing {
+	  public int walk(int distance, int time) {
+	    int speed = distance / time;
+	    speed = speed * 2;
+	    return speed;
+	  }
+	}
+66. Can we override static method?
+    No, It is because the static method is the part of the class,
+67. What is method Overloading in Java.
+    The process of creating multiple method signatures using one method name 	
+	a) Varying the number of arguments
+    b) Changing the return type of the Method
+68. Can we override the overloaded method?
+    Yes.
+69. Can we overload the main() method?
+    Yes, we can have any number of main methods in a Java program by using method overloading.
+70. What is the purpose of static methods and variables?
+    The methods or variables defined as static are shared among all the objects of the class. 
+71. Can we overload/overridden a static method?
+    No, Java does not support the Overloading of a static method. The process would throw an error reading "static method cannot be referenced."	
+    Yes, There can be two or more static methods in a class with the same name but differing input parameters.
+72. What is the static block?
+    Static block is used to initialize the static data member. It is executed before the main method, at the time of classloading.
+73. How many times is the finalize method called?
+    The finalize method is called the Garbage collector. For every object, the Garbage Collector calls the finalize() method just for one time
+74. What are Java supports four access modifiers/specifiers?
+	Public: The classes, methods, or variables which are defined as public, can be accessed by any class or method
+	Protected: Protected can be accessed by the class of the same package, or by the sub-class of this class, or within the same class.
+    Default: Default are accessible within the package only. By default, all the classes, methods, and variables are of default scope.
+	Private: The private class, methods, or variables defined as private can be accessed within the class only.
+75. What is differentiate between break and continue?
+    It terminates the loop or switch block. Used with both loop and switch statement
+    It does not terminate but skips to the next iteration. Used with only loop statements.
+75. What is difference between Iterator and Enumeration?
+    Iterator also gives you the ability to remove an element while iterating while Enumeration doesn’t allow that. 
+75. What is difference between fail-safe and fail-fast iterators?
+    fail-safe doesn’t throw ConcurrentModificationException while fail-fast does whenever they detect an outside change on the underlying collection while iterating over it.
+76. What role does the final keyword play in Java?
+    final class: is disabled from being subclassed i.e., no class can extend the final class.
+    final method: is restricted from being overridden by the subclass.
+    final variable: is not able to change the value that it holds during the program execution. So, it behaves like a constant.
+77. Can you declare the main method as final?
+    Yes
+78. Can we declare a constructor as final?
+    No,  it is never inherited.
+79. What is finally keeyword in Java?
+    The finally block always executes when the try block exits. 
+80. Will the finally block be executed if the code System.exit(0) is written at the end of try block?
+    No, the program will gets terminated 
+81. What is final, finally and finalize keywords different?
+    final: If any restriction is required for classes, variables, or methods, the final keyword comes in handy
+	final int a=100;    a = 0; //error 
+	finally: It is the block present in a program where all the codes written inside it get executed irrespective of handling of exceptions
+	try {
+		int variable = 5;
+	} catch (Exception exception) {
+		System.out.println("Exception occurred");
+	} finally {
+		System.out.println("Execution of finally block");
+	}
+	finalize: Prior to the garbage collection of an object, the finalize method is called so that the clean-up activity is implemented
+	public static void main(String[] args) {
+	  String example = new String("InterviewBit");
+	  example = null;
+	  System.gc(); // Garbage collector called
+	}
+	public void finalize() {
+	// Finalize called
+	} 
+82. What is Interface in Java?
+    An interface is a contract between a class and the outside world that has only method declarations and not method implementations.
+	All methods in an interface are internally public abstract void
+    All variables in an interface are internally public static final
+    Classes do not extend but implement interfaces
+83. What is a Marker Interface?
+    An empty interface in Java is referred to as a Marker interface. 
+    Serializable and Cloneable are some famous examples of Marker Interface 
+84. What is an Abstract class different from an Interface?
+	Constituents – An abstract class contains instance variables, whereas an interface can contain only constants.
+	Constructor and Instantiation – While an interface has neither a constructor nor it can be instantiated, an abstract class can have a default constructor that is called whenever the concrete subclass is instantiated.
+	Implementation of Methods – All classes that implement the interface need to provide an implementation for all the methods contained by it. A class that extends the abstract class, however, doesn't require implementing all the methods contained in it. Only abstract methods need to be implemented in the concrete subclass.
+	Type of Methods – Any abstract class has both abstract as well as non-abstract methods. Interface, on the other hand, has only a single abstract method.
+85. Is it possible to instantiate the abstract class?
+    No, the abstract class can never be instantiated even if it contains a constructor and all of its methods are implemented.
+86. What are the differences between abstract class and interface?	
+	can provide the implementation of the interface/can't provide the implementation of the interface
+	abstract keyword/interface keyboard 
+	abstract class can be extended using keyword extends/interface class can be implemented using keyword implements
+87. What is the nested interface?
+	An Interface that is declared inside the interface or class is known as the nested interface
+	interface interface_name{    
+	 ...    
+	 interface nested_interface_name{    
+	  ...    
+	 }    
+	}     
+88. Can a class have an interface?
+    Yes, an interface can be defined within the class. It is called a nested interface.
+89. Can an Interface have a class?
+    Yes, they are static implicitly.
+	
+String
+========
+90. What is String Pool in Java?
+    The collection of strings stored in the heap memory refers to the String pool. Whenever a new object is created, it is checked if it is already present in the String pool or not. 
+	If it is already present, then the same reference is returned to the variable else new object is created in the String pool, and the respective reference is returned.
+91. What is the meaning of immutable regarding String?
+    It is unmodifiable or unchangeable. 
+92. How many ways can we create the string object?
+    a) String Literal: String s="welcome";             //It doesn't create a new instance 
+	b) By new keyword: String s=new String("Welcome"); //creates two objects and one reference variable 
+92. How many objects will be created in the following code?
+    a) String s1="Welcome";  
+       String s2="Welcome";               //one object
+    b) String s = new String("Welcome");  //two ojbects
+93. How is the creation of a String using new() different from that of a literal?
+    When a String is formed as a literal with the assistance of an assignment operator, it makes its way into the String constant pool so that String Interning can take place. This same object in the heap will be referenced by a different String if the content is the same for both of them.
+	public bool checking() {
+  	  String first = "InterviewBit";
+	  String second = "InterviewBit";
+	  if (first == second)
+		  return true;
+   	  else
+		  return false;
+	}
+	when a String formation takes place with the help of a new() operator, interning does not take place. The object gets created in the heap memory even if the same content object is present.
+94. Why is it said that the length() method of String class doesn't return accurate results?
+    The length method returns the number of Unicode units of the String
+95. What is the difference between String, String Builder, and String Buffer?
+    String variables are stored in a constant string pool. With the change in the string reference, it becomes impossible to delete the old value. 
+	For example, if a string has stored a value "Old," then adding the new value "New" will not delete the old value. It will still be there, however, in a dormant state. 
+	String Builder, values are stored in a stack. With the change in the string reference, the new value replaces the older value. 
+	String Buffer is synchronized (and therefore, thread-safe) and offers slower performance than the String Builder.
+96. What is differentiate between == and equals() ?
+    equals(): It is a method of String class and Content comparison
+	==: It is an operator. Address comparison
+97. What are the differences between String and StringBuffer?
+    a) The String class is immutable.
+	   The StringBuffer class is mutable.
+	b) The String is slow and consumes more memory when you concat too many strings because every time it creates a new instance.
+	   The StringBuffer is fast and consumes less memory when you cancat strings.
+	c) The String class overrides the equals() method of Object class. So you can compare the contents of two strings by equals() method.
+	   The StringBuffer class doesn't override the equals() method of Object class.
+98. What are the differences between StringBuffer and StringBuilder?
+    a) StringBuffer is synchronized, i.e., thread safe. It means two threads can't call the methods of StringBuffer simultaneously.
+	   StringBuilder is non-synchronized,i.e., not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
+	b) StringBuffer is less efficient than StringBuilder.
+	   StringBuilder is more efficient than StringBuffer.
+
+Regular Expressions
+===================
+99. What are regular expressions?
+	Construct		Description
+	[abc]			a, b, or c (simple class)
+	[^abc]			Any character except a, b, or c (negation)
+	[a-zA-Z]		a through z, or A through Z, inclusive (range)
+	[a-d[m-p]]		a through d, or m through p: [a-dm-p] (union)
+	[a-z&&[def]]	d, e, or f (intersection)
+	[a-z&&[^bc]]	a through z, except for b and c: [ad-z] (subtraction)
+	[a-z&&[^m-p]]	a through z, and not m through p: [a-lq-z] (subtraction)
+100.Name some classes present in java.util.regex package
+    MatchResult Interface
+	Matcher class
+	Pattern class
+	PatternSyntaxException class
+101.How to implement Jave Pattern&Matcher Regular Expressions?	
+	Pattern p = Pattern.compile(".s");//. represents single character  
+	Matcher m = p.matcher("as");  
+	boolean b = m.matches();  
+
+Java Collections
+================
+102.What are Collections in Java?    
+    Collection Framework is a combination of classes and interface, which is used to store and manipulate the data in the form of objects.     
+	Array List, Linked List, Lists, and Vector
+    Interfaces – Collection, List, Map, Queue, Set, Sorted Map, and Sorted Set
+    Maps – HashMap, HashTable, LinkedHashMap, and TreeMap
+    Sets – Hash Set, Linked Hash Set, and Tree Set
+    Queues – Priority Queue
+103.What is different between HashMap and HashTable?
+    HashMap in Java is a Map-based collection class, used for storing key & value pairs. 
+	  It is denoted as HashMap<Key, Value> or HashMap<K, V> HashMap doesn't have thread safety,
+	HashTable is an array of a list, where each list is called a bucket. 
+	  Values contained in a HashTable are unique and depend on the key. HashMap has thread safety,
+104.What is Set in Java?
+    Set is a collection of unique objects.
+105.What is different with Array, ArrayList, LinkList, Vecter
+    Array: Arrays are always of fixed size, Arrays can only store similar type objects,
+	ArrayList:  ArrayList is better to store and fetch data.
+	LinkList:   LinkedList is efficient for manipulation.
+	Vecter:     Vector is synchronized. Thead safe
+106.What is the difference between List and Set?
+    The List can contain duplicate elements whereas Set includes unique items.
+107.What is the difference between HashSet and TreeSet?
+	HashSet maintains no order whereas TreeSet maintains ascending order.
+108.What is the difference between Iterator and ListIterator?
+    Iterator traverses the elements in the forward direction only 
+	ListIterator traverses the elements into forward and backward direction.
+109.What is the difference between Comparable and Comparator?	
+    a) Comparator defines custom ordering while Comparable defines the natural order of objects,
+	   e.g. the alphabetic order for String
+	b) Comparator provides one method named compare() while Comparable provides one method named compareTo(). .
+    Write a Comparator in Java to compare two employees based upon there name, departments, and age?
+	??
+110.What does the hashCode() method?
+    The hashCode() method returns a hash code value
+111.Why we override equals() method?
+    The equals method is used to check whether two objects are the same or not. It needs to be overridden if we want to check the objects based on the property.
+    For example, Employee is a class that has 3 data members: id, name, and salary. However, we want to check the equality of employee object by the salary. Then, we need to override the equals() method.
+112.Which two methods you will override for an Object to be used as Key
+ 	equals and hashcode
+113.What is difference between java.util.Date and java.sql.Date	
+    a)former contains both date and time while later contains only date part.
+	b)regular date time while database date time
+	
+I/O Basic
+==========
+112.What do you understand by an IO stream?
+    The stream is a sequence of data that flows from source to destination. It is composed of bytes
+    System.out: standard output stream->is used to display normal messages and results. 
+    System.in: standard input stream  ->represents InputStream object which by default represents standard input device, i.e., keyboard.
+    System.err: standard error stream ->is used to display error messages.
+113.What is the difference between the Reader/Writer class hierarchy and the InputStream/OutputStream class hierarchy?
+    The Reader/Writer class hierarchy is character-oriented, 
+	The InputStream/OutputStream class hierarchy is byte-oriented
+    The ByteStream classes are used to perform input-output of 8-bit bytes 
+	The CharacterStream classes are used to perform the input/output for the 16-bit Unicode system
+114.What is the purpose of using BufferedInputStream and BufferedOutputStream classes?
+    Java BufferedOutputStream class is used for buffering an output stream. It internally uses a buffer to store data.
+    Java BufferedInputStream class is used to read information from the stream. It internally uses the buffer mechanism to make the performance fast.
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));   
+115.What is serialization?
+    Serialization in Java is a mechanism of writing the state of an object into a byte stream.
+116.How can you make a class serializable in Java?	
+	A class can become serializable by implementing the Serializable interface.
+117.What is Deserialization?
+    Deserialization is the process of reconstructing the object from the serialized state
+118.a)What is the transient keyword?
+	  it will not be serialized and the value of variable need not persist when it is restored
+    b)What is the volatile keyword?
+	  It is used to communicate the content of memory between threads and can be modified by multiple threads 
+	  private static int number; // not volatile
+      private volatile static boolean ready;
+    c)Difference between the transient and volatile variable in Java?
+	  One used in the context of serialization while the other is used in concurrency
+119.What is Socket?
+    A socket is simply an endpoint for communications between the machines. It provides the connection mechanism to connect the two computers using TCP. The Socket class can be used to create a socket.
+    public static void main(String[] args){  
+	try{  
+		ServerSocket ss=new ServerSocket(6666);  
+		Socket s=ss.accept();//establishes connection   
+		DataInputStream dis=new DataInputStream(s.getInputStream());  
+		String  str=(String)dis.readUTF();  
+		System.out.println("message= "+str);  
+		ss.close();  
+	}catch(Exception e){System.out.println(e);}  
+	}  
+120.What is a JavaBean?
+    JavaBean is a serializable object and is a reusable software component written in the Java.
+121.What is the purpose of using the Java bean?
+	A bean encapsulates many objects into one object so that we can access this object from multiple places
+
+Multithreading and Concurrency
+=============================
+122.What is concurrency in Java?
+    Systems can do more than one thing at a time, Thread can be implemented this operator
+123.What is process in Java?
+    A program in execution 
+124.What is thread in Java?
+	A thread is a lightweight process 
+125.Differentiate between process and thread?
+	A Program in the execution is called the process whereas; 
+	A thread is a subset of the process
+126.What is the purpose of wait() method in Java?
+    The wait() method is provided by the Object class in Java. It is used to pause the current thread,
+127.What is the difference between wait() and sleep() method?
+    The wait() method is defined in Object class.	The sleep() method is defined in Thread class.
+	The wait() method releases the lock.	        The sleep() method doesn't release the lock.
+128.What is multithreading?
+    Multithreading is a process of executing multiple threads simultaneously
+129.What is deadlock in Java?
+    Two or more threads try to access the same resources at the same time. 	
+130.Give a briefing on the life cycle of a thread.
+    New – In the very first state of the thread lifecycle, the thread instance is created, and the start() method is yet to be invoked. The thread is considered alive now.
+    Runnable – After invoking the start() method, but before invoking the run() method, a thread is in the runnable state. A thread can also return to the runnable state from waiting or sleeping state.
+    Running – The thread enters the running state after the run() method is invoked. This is when the thread begins execution.
+    Non-Runnable – Although the thread is alive, it is not able to run. Typically, it returns to the runnable state after some time.
+    Terminated – The thread enters the terminated state once the run() method completes its execution. It is not alive now.	
+131.What is the Daemon Thread?
+    This Daemon thread is designed to run in the background during the Garbage Collection in Java
+    public class IBGarbageCollect {
+	  public static void main (String [] args){
+ 	    String s1 = "Some String";
+		// s1 referencing String object - not yet eligible for GC
+		s1 = null; // now s1 is eligible for GC
+	  }
+	}	
+132.What is garbage collection in java?
+    Java garbage collection is an automatic process. The programmer does not need to explicitly mark objects to be deleted. 
+	The garbage collection implementation lives in the JVM.
+133.What are various types of garbage collectors in Java?
+    Serial/Parallel/CMS/G1
+134.What are the possible ways of making object eligible for garbage collection (GC) in Java?
+    Set the object references to null once the object creation purpose is served
+135.What is Synchronization in Java?
+    If several threads try to access a single block of code, then there is an increased chance of producing inaccurate results. 
+	Synchronization is used to prevent this. Using the synchronization keyword makes a thread need a key to access the synchronized code.
+	public class Counting {
+      private int increase_counter;
+	  public synchronized int increase() {
+	    increase_counter = increase_counter + 1;
+	    return increase_counter;
+	  }
+	}
+136.How do you make a thread in Java? 
+    Extend the Thread Class
+	public class Addition extends Thread {
+		public void run() {}
+    }
+	Implement Runnable Interface
+	public class Addition implements Runnable {
+		public void run() {}
+	}
+137.What is different between notify and notifyAll
+    notify wakes (any) one thread in the wait set, notifyAll wakes all threads in the waiting set.
+	
+JDBC
+======
+137.What is JDBC?
+    JDBC is a Java API that is used to connect and execute the query to the database.
+138.What is JDBC Driver?
+    JDBC-ODBC bridge driver
+	Native-API driver
+	Network Protocol driver
+    Thin driver
+139.What are the steps to connect to the database in java?
+	Registering the driver class: Class.forName("oracle.jdbc.driver.OracleDriver");  
+	Creating connection:          DriverManager.getConnection(String url,String name,String password)  
+	Creating the statement:       Statement createStatement()
+	Executing the queries:        ResultSet executeQuery(String sql)
+	Closing connection:           con.close();  
+140.What are the JDBC API components?
+    Connection/Statement/PreparedStatement/CallableStatement/ResultSet/
+141.What are the differences between Statement and PreparedStatement interface?
+    the query is compiled each time we run the program.
+	the query is compiled only once.
+142.What is differnet 
+    execute() – Used for executing an SQL query. It returns TRUE if the result is a ResultSet, like running Select queries, and FALSE if the result is not a ResultSet, such as running an Insert or an Update query.
+    executeQuery() – Used for executing Select queries. It returns the ResultSet, which is not null, even if no records are matching the query. The executeQuery() method must be used when executing select queries so that it throws the java.sql.SQLException with the 'executeQuery method cannot be used for update' message when someone tries to execute an Insert or Update statement.
+    executeUpdate() – Used for executing Delete/Insert/Update statement or DDL statements that returns nothing. The output varies depending on whether the statements are Data Manipulation Language (DML) statements or Data Definition Language (DDL) statements. The output is an integer and equals the total row count for the former case, and 0 for the latter case.
+143.How can we execute stored procedures using CallableStatement?
+	create or replace procedure "INSERTR"  
+	  (id IN NUMBER, name IN VARCHAR2)  
+	is  
+	  begin  
+	    insert into user420 values(id,name);  
+	  end; 
+    CallableStatement stmt=con.prepareCall("{call insertR(?,?)}");  		 
+144.What is batch processing and how to perform batch processing in JDBC?
+	Statement stmt=con.createStatement();  
+		stmt.addBatch("insert into user420 values(190,'abhi',40000)");  
+		stmt.addBatch("insert into user420 values(191,'umesh',50000)");  
+		stmt.executeBatch();//executing the batch  
+145.What are CLOB and BLOB data types in JDBC?
+	Blob can be defined as the variable-length, binary large object which is used to hold the group of Binary data such as voice, images, and mixed media
+
+
+
+=====================================================
+1. How do we reverse a string?
+      String source = "Hello";
+      a) Solution-1
+      StringBuilder out = new StringBuilder();
+      for (int i = source.length() - 1; i >= 0; i--) {
+	       out.append(source.charAt(i));
+      }
+	  b) Solution-2
+	  StringBuilder str2 = new StringBuilder();
+	  str2.append(source)
+	  str2 = str2.reverse();
+   How do we reverse a array?
+     input: {12, 9, 21, 17, 33, 7}  output: {7, 33, 17, 21, 9, 12} 
+     for (int i = 0; i < inputArray.length/2; i++) 
+        {
+            temp = inputArray[i];
+            inputArray[i] = inputArray[inputArray.length-1-i];
+            inputArray[inputArray.length-1-i] = temp;
+        }
+2. Write a program to find the square root of a number.
+	  double squareRoot = Math.sqrt(square);
+3. Write a program that detects the duplicate characters in a string.
+	  List<Character> dupChars = new ArrayList();
+	  Set charSet<Character> = new HashSet();
+	  char[] characters = word.toCharArray();
+      for (Character ch : characters) {
+		   if (!charSet.add(ch))
+	           dupChars.add(ch)
+	  }
+4. Write a Program to remove duplicates in an ArrayList.
+      Set gfgSet<String> = new HashSet();
+      List<String> gfg = new ArrayList<String>() {
+        {
+            add("Geeks");
+            add("for");
+            add("Geeks");
+        }};
+	  a)Solution-1
+	  for (int i=0; i<gfg.length; i++) {
+	     if (!gfgSet.add(gfg[i]))
+		     gfg.remove(i);
+	  }	
+	  b)Solution-2
+	  Set <Integer> withoutDuplicates = new LinkedHashSet<Integer>(gfg)
+	  gfg.clear();
+	  gfg.addAll(withoutDuplicates);
+4. Write a program to check if String has all unique characters 
+     String str="Hello World";
+	 Set charSet<Character> = new HashSet();
+	 char[] characters = str.toCharArray();
+	 for (Character ch : characters) {
+          if (!charSet.add(ch))
+		      return false;
+     }	 
+5. Find the word count in a string using HashMap Collection.
+      String str = "Hello World Jack Jack";
+      String[] split = str.split(" ");
+	  Map<String, Integer> map = new HashMap<String, Integer>();
+	  for (int i = 0; i < split.length; i++) {
+		   if (map.containsKey(split[i])) {
+               int count = map.get(split[i]);
+               map.put(split[i], count + 1);
+		   } else {
+               map.put(split[i], 1);
+           }
+      }	  
+5. Find first non repeated character in String
+     If input string is “analogy”,  then program should return ‘n’
+     If input string is “easiest”, then program should return ‘a’
+6. Write a program to find the Second Highest number in an ArrayList
+      for (int i = 0; i < array.length; i++) {
+           if (array[i] > high){
+               nextHigh = high;
+               high = array[i];
+           } else if (array[i] > nextHigh){
+               nextHigh = array[i];
+           }
+      }
+7. Program to swap two numbers without using a third variable?
+      int a = 10;
+      int b = 20;
+      b = b + a; // now b is sum of both the numbers
+      a = b - a; // b - a = (b + a) - a = b (a is swapped)
+      b = b - a; // (b + a) - b = a (b is swapped)
+8. Java program to check if the given number is Prime?	
+      n = 19; true
+	  n = 49; false
+      if (n == 0 || n == 1) 
+		  return false;
+	  for (int i = 2; i <= n / 2; i++) {
+	 	 if (n % i == 0) 
+		 	 return false;
+	  }
+	  return true;
+9. Check if a List of integers contains only odd numbers?
+	  for (int i : list) {
+		if (i % 2 == 0)
+			return false;
+	  }
+10.How to remove Whitespaces from String?
+      char[] charArray = input.toCharArray();
+	  for(char c : charArray) {
+		if (!Character.isWhitespace(c))
+			output.append(c);
+	  }
+11.Sorting an array in Java?
+      int[] array = {1, 2, 3, -1, -2, 4};
+      Arrays.sort(array);
+12.Sum of all elements in integer array?
+      for (int i : array)
+	       sum += i;
+13.Find second largest number in an array?
+      int highest = Integer.MIN_VALUE;
+	  int secondHighest = Integer.MIN_VALUE;
+	  for (int i : array) {
+		   if (i > highest) {
+			   secondHighest = highest;
+			   highest = i;
+		   } else if (i > secondHighest) {
+			   secondHighest = i;
+		   }
+	  }
+	  return secondHighest; 
+14.How to print date in specific format?	
+	 String pattern = "MM-dd-yyyy";
+	 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+	 String date = simpleDateFormat.format(new Date());
+	 System.out.println(date); // 06-23-2020	
+15.Write a code to show NullPointerException
+     String name = null; 
+     System.out.println(name.toUpperCase());	 
+16.How to Compile and Run a Java Class from Command Line?
+     javac Test.java
+     java Test
+17.How to create Enum in Java?
+     public enum ThreadStates {
+		START,
+		RUNNING,
+		WAITING,
+		DEAD;
+	 }
+18.Guess the Output of Code Snippets
+   a) String s1 = "abc"; String s2 = "abc";
+      System.out.println("s1 == s2 is:" + s1 == s2);             ==> false
+   b) String str = null; String str1="abc";
+      System.out.println(str1.equals("abc") | str.equals(null)); ==> NullPointerException
+   c) String x = "abc"; String y = "abc";
+      x.concat(y);
+      System.out.print(x);                      ==> abc
+   d) public void main(String[] args) {
+		int x = 10*10-10;
+		System.out.println(x);                  ==> Runtime error
+      }	 
+   e) try {
+		   throw new IOException("Hello");
+	  }catch(IOException | Exception e) {
+		   System.out.println(e.getMessage());  ==> Compile-Time Error
+	  }	  
+19.Find 5 mistakes in the following code snippet
+     package com.journaldev.programming-interviews;
+     public class String Programs {
+ 	   static void main(String[10] args) {
+		 String s = "abc"
+		 System.out.println(s);
+	   } 
+     }	  
+20.Write a Java Program to remove all white spaces
+   String str1 = "Saket Saurav is a QualityAna list";
+   a) Solution-1 
+       String str2 = str1.replaceAll("\\s", "");   
+   b) Solution-2  
+       char[] chars = str1.toCharArray();
+       StringBuffer sb = new StringBuffer();
+       for (int i = 0; i < chars.length; i++) {
+            if((chars[i] != ' ') && (chars[i] != '\t') ){
+                sb.append(chars[i]);
+       } 	      
+21.How to Convert Integer to String?	
+    int number = 123;
+    String result = String.valueOf(number);
+22.How to Convert String to Ingeter? 
+    String string ="Hello";
+	Integer result = Integer.parseInt(string)
+23.How to sort an ArrayList in java?[	
+	ArrayList<String> countrieslist = new ArrayList<String>();
+    countrieslist.add("USA");
+    countrieslist.add("UK");
+    countrieslist.add("India");
+    Collections.sort(countrieslist);
+24.Write java Program to Find Smallest and Largest Element
+    int arr[] = new int[]{12,56,76,89,100,343,21,234};
+    int smallest = arr[0];
+    int largest = arr[0];
+    for(int i=1; i< arr.length; i++) {
+	  if(arr[i] > largest)
+		 largest = arr[i];
+	  else if (arr[i] < smallest)
+	     smallest = arr[i];
+    }	
+25.Find missing number in the array	
+    int[] arr1={7,5,6,1,4,2};
+	int n=arr.length+1;
+    int sum=n*(n+1)/2;
+    int restSum=0;
+    for (int i = 0; i < arr.length; i++) {
+         restSum+=arr[i];
+    }
+    int missingNumber=sum-restSum;
+    return missingNumber;
+26.Write a function to sort the given array in O(n) time complexity.
+    input:[1, 2, 2, 0, 0, 1, 2, 2, 1] output:[0, 0, 1, 1, 1, 2, 2, 2, 2]	
+	public static void sort(int[]a) {
+        /* array to keep the count of 0s, 1s, 2s*/
+        int[]freq = new int[3];
+         /* traverse the given array for filling the
+         * frequency array*/
+        for(int val : a) {
+            freq[val]++;
+        }
+        /*pointer to traverse the given array again*/
+        int pointer = 0;
+        for(int i=0;i<freq.length;i++) {
+            /* loop to exhaust the number of 0s, 1s, 2s*/
+            while(freq[i]-->0){
+                /*at the current pointer plot the current number*/ 
+                a[pointer]=i;
+                /*increment the pointer*/
+                pointer++;
+            }
+        }
+    }
+27.How do you check the equality of two arrays in java?
+   a) int[] arrayOne = {2, 5, 1, 7, 4};
+      int[] arrayTwo = {2, 5, 1, 7, 4};
+      boolean equalOrNot = true;
+      if(arrayOne.length == arrayTwo.length){
+         for (int i = 0; i < arrayOne.length; i++){
+              if(arrayOne[i] != arrayTwo[i]){
+                 equalOrNot = false;
+              }
+         }
+      }	
+   b) Arrays.equals(s1, s2)
+28.How to check whether user input is number or not in java?
+    try{
+        Integer.parseInt(input);
+    }catch(NumberFormatException ex){
+        return false;
+    }
+    return true;	
+	
+	
+	
+	java code examples for interview
+	
+	
+	
+JavaScript
+  document.write("JavaScript Hello World!");  
+  <input name="fname" type="text" value="Michael">
+  document.getElementsByName("fname"); 
+  DOM(Document Object Model)/SAX(Simple API for XML)
+Angular
+  What is the two-way data binding: HTML <<>> TypeScript ngModule/{{}}
+  What are the building blocks of Angular: components/Data Binding/Modules/Directive/Service..
+  How to passing data between Parent and Children : @Input/Output
+  Whatis the the pipes? datepipe:{{todayNumber | date}} / {{number | currency}}
+Java
+  OO concepts, polymorphism, encapsulation, and abstraction
+  Constructor/Method
+  Over loadding/Over ridding
+  ArrayList/LinkList/Array
+Spring Boot 
+  What's the different between RestFul and Soap
+  What's the the RequestMapping (Annotation is used to provide routing information)
+  What's the different between RequestMapping(Class level) and GetMapping(Method level)
+  How to create a Spring project (Spring Initializr)
+  How to connect Spring Boot application to database using JDBC (connection pool)
+  JDBCTemplate (JDBC core package)
+ 
+
+
+DSAMS Web is three tiers appliation. 
+#1.It includes user interface, middle tire and backend database.
+   a)User interface is built up by Angular 8 framework, HTML and CSS
+   b)Middle tire is built up by Spring framework, percifically is Spring boot
+   c)Backend is built up by Oracle 19c with a huge amount of packages and store procedures 
+#2.It's automatically build by Jenkins when the new code has been check in, 
+   then it will go through the pipelines, such as SonarQube,Docker,Vulnerability and deploy to Tomcat.
+#3.The souce code control has been managed by the GitLab.
+
+ 

@@ -1,0 +1,173 @@
+perl -v
+================================
+perl -e 'print "Hello World\n"'
+================================
+perl program.pl
+
+#!/usr/bin/perl
+use v5.35;
+# this would print with a linebreak in the middle
+print ("Hello, 
+           world");
+print 42;	
+	
+# Scalars   
+  my $animal = "camel";
+  my $answer = 42;
+
+# Arrays
+  my @animals = ("camel", "llama", "owl");
+  my @numbers = (23, 42, 69);
+  my @mixed   = ("camel", 42, 1.23);
+  print $animals[0];
+  @animals[0..2];
+  if (@animals < 5) { ... }
+  my @sorted = sort @animals;
+
+#Hashes
+  my %fruit_color = (
+     apple  => "red",
+     banana => "yellow",
+  );
+  $fruit_color{"apple"};
+  my @fruits = keys %fruit_color;
+  my @colors = values %fruit_color;
+  my $variables = {
+     scalar  => {
+                 description => "single item",
+                 sigil => '$',
+                },
+     array   => {
+                 description => "ordered list of items",
+                 sigil => '@',
+                },
+     hash    => {
+                 description => "key/value pairs",
+                 sigil => '%',
+                },
+  };
+  print "Scalars begin with a $variables->{'scalar'}->{'sigil'}\n";
+  
+# Scope
+  my $var = "foo" (local)
+     $var = "foo" (global)
+
+# Condition
+  if ( condition ) {
+	   ...
+  } elsif ( other condition ) {
+       ...
+  } else {
+       ...
+  }
+  unless ( condition ) {
+    ...
+  }
+  
+# While
+  while ( condition ) {
+    ...
+  }
+  
+# For
+  foreach (@array) {
+    print "This element is $_\n";
+  }
+  print $list[$_] foreach 0 .. $max;
+  
+# String Comparison
+  eq  equality
+  ne  inequality
+  lt  less than
+  gt  greater than
+  le  less than or equal
+  ge  greater than or equal
+
+# Miscellaneous
+  =   assignment             $a += 1;        # same as $a = $a + 1
+  .   string concatenation   $a .= "\n";     # same as $a = $a . "\n";
+  x   string multiplication (repeats strings)
+  ..  range operator (creates a list of numbers or strings)
+ 
+# Files and I/O
+  open(my $in,  "<",  "input.txt")  or die "Can't open input.txt: $!";
+  open(my $out, ">",  "output.txt") or die "Can't open output.txt: $!";
+  open(my $log, ">>", "my.log")     or die "Can't open my.log: $!";  
+  my @lines = <$in>;
+  while (<$in>) {     # assigns each line in turn to $_
+    print "Just read in this line: $_";
+  }
+  close $in or die "$in: $!";
+  
+=======================
+* Regular expressions *
+=======================
+# Simple Matching
+  if (/foo/)       { ... }  # true if $_ contains "foo"
+  if ($a =~ /foo/) { ... }  # true if $a contains "foo"
+
+# Simple substitution
+  s/foo/bar/;               # replaces foo with bar in $_
+  $a =~ s/foo/bar/;         # replaces foo with bar in $a
+  $a =~ s/foo/bar/g;        # replaces ALL INSTANCES of foo with bar in $a
+
+# Regular Expressions
+  .                   a single character
+  \s                  a whitespace character (space, tab, newline,...)
+  \S                  non-whitespace character
+  \d                  a digit (0-9)
+  \D                  a non-digit
+  \w                  a word character (a-z, A-Z, 0-9, _)
+  \W                  a non-word character
+ [aeiou]             matches a single character in the given set
+ [^aeiou]            matches a single character outside the given set
+ (foo|bar|baz)       matches any of the alternatives specified
+  ^                  start of string
+  $                  end of string  
+
+  *                  zero or more of the previous thing
+  +                  one or more of the previous thing
+  ?                  zero or one of the previous thing
+ {3}                 matches exactly 3 of the previous thing
+ {3,6}               matches between 3 and 6 of the previous thing
+ {3,}                matches 3 or more of the previous thing
+Example:
+ /^\d+/              string starts with one or more digits
+ /^$/                nothing in the string (start and end are adjacent)
+ /(\d\s){3}/         three digits, each followed by a whitespace character (eg "3 4 5 ")
+ /(a.)+/             matches a string in which every odd-numbered letter is a (eg "abacadaf")
+ # a cheap and nasty way to break an email address up into parts
+ if ($email =~ /([^@]+)@(.+)/) {
+     print "Username is $1\n";
+     print "Hostname is $2\n";
+ }
+ 
+# Writing subroutines
+  sub square {
+    my $num = shift;      //shifts the first item off the list of arguments
+    my $result = $num * $num;
+    return $result;
+  }
+  $sq = square(8);
+  my ($logmessage, $priority) = @_;       # common
+  my $logmessage = $_[0];                 # uncommon, and ugly
+  
+============================================
+-r File is readable by effective uid/gid.
+-w File is writable by effective uid/gid.
+-x File is executable by effective uid/gid.
+-o File is owned by effective uid.
+-e File exists.
+-z File has zero size (is empty).
+-s File has nonzero size (returns size in bytes).
+-f File is a plain file.
+-d File is a directory.
+-l File is a symbolic link (false if symlinks aren't supported by the file system).
+-p File is a named pipe (FIFO), or Filehandle is a pipe.
+-S File is a socket.
+-b File is a block special file.
+-c File is a character special file.
+-t Filehandle is opened to a tty.
+-u File has setuid bit set.
+-g File has setgid bit set.
+-k File has sticky bit set.  
