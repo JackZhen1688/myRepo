@@ -1,2 +1,33 @@
-Testing 123 ABC again today 1/9/2025!!!
-Test agaikkjkjk
+employees
+---------
+id | name   | department | salary
+---+--------+------------+--------
+1  | Alice  | HR         | 50000
+2  | Alice  | Finance    | 55000
+
+SELECT
+    CASE WHEN e1.name       = e2.name       THEN 'SAME' ELSE 'DIFFERENT' END AS name_comparison,
+    CASE WHEN e1.department = e2.department THEN 'SAME' ELSE 'DIFFERENT' END AS department_comparison,
+    CASE WHEN e1.salary     = e2.salary     THEN 'SAME' ELSE 'DIFFERENT' END AS salary_comparison
+FROM employees e1
+JOIN employees e2
+  ON e1.id = 1   -- first row
+ AND e2.id = 2;  -- second row
+
+name_comparison   | department_comparison | salary_comparison
+------------------+-----------------------+-----------------
+SAME              | DIFFERENT             | DIFFERENT
+
+
+
+SELECT 'name'       AS column_name FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.name <> e2.name
+UNION ALL
+SELECT 'department' FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.department <> e2.department
+UNION ALL
+SELECT 'salary'     FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.salary <> e2.salary;
+
+column_name
+-----------
+department
+salary
+S
