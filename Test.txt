@@ -30,4 +30,39 @@ column_name
 -----------
 department
 salary
-S
+
+CREATE TABLE demo."USER_ADDRESS"
+(
+    "ADDRESS_ID" bigint,
+    "ADDRESS_TYPE" text COLLATE pg_catalog."default",
+    "ADDRESS_LINE1" text COLLATE pg_catalog."default",
+    "ADDRESS_LINE2" text COLLATE pg_catalog."default",
+    "CITY" text COLLATE pg_catalog."default",
+    "STATE" text COLLATE pg_catalog."default",
+    "ZIP_CODE" text COLLATE pg_catalog."default",
+    "ZIPCODE_EXT" text COLLATE pg_catalog."default",
+    "COUNTRY" text COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE demo."USER_ADDRESS"
+    OWNER to postgres;
+
+CREATE TABLE demo."USER_HISTORY"
+(
+    history_id bigint,
+    user_id bigint,
+    operation_type text COLLATE pg_catalog."default",
+    transaction_id bigint,
+    field_name text COLLATE pg_catalog."default",
+    old_value text COLLATE pg_catalog."default",
+    new_value text COLLATE pg_catalog."default",
+    updated_by text COLLATE pg_catalog."default",
+    created_ts date
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE demo."USER_HISTORY"
+    OWNER to postgres;
