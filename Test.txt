@@ -96,3 +96,36 @@ Monitoring/alerting should be enabled to detect failed login spikes.
 Secret/Certificate Expiry:
 Authentication failures due to expired client secrets or certificates in the Azure AD app registration.
 Proactive rotation processes should be in place to avoid outages.
+
+========
+1. User Access Request
+   A user (internal or external tenant) navigates to the Grafana URL.
+2. Redirect to Azure AD
+   Grafana, configured with OIDC, redirects the user to the Azure AD login endpoint.
+3. User Authentication in Azure AD
+   The user provides credentials.
+   Azure AD enforces security policies (MFA, conditional access, device compliance).
+4. Cross-Tenant Verification
+   If the user is from an external tenant:
+      Azure AD checks cross-tenant access policies or B2B collaboration configuration.
+      If permitted, the user continues; otherwise, authentication fails.
+5. Token Issuance
+   Azure AD issues an ID Token (OIDC) and optionally an Access Token containing user identity claims (e.g., UPN, email, group memberships).
+6. Grafana Token Validation
+   Grafana validates the token against Azure AD’s public keys.
+   User identity and group claims are extracted.
+7. Role Mapping & Authorization
+   Grafana maps Azure AD group claims (or specific attributes) to Grafana roles:
+     Admin
+     Editor
+     Viewer
+8. Access Granted / Denied
+   If role mapping is successful, the user is granted access with appropriate permissions.
+   If no role mapping exists, the user is assigned the default role (e.g., Viewer) or denied access.
+9. Session Established
+   Grafana creates a session for the authenticated user based on the token.
+   Session duration follows Grafana and Azure AD policies.
+10. Monitoring & Logging
+    Authentication events and errors are logged in:
+      Grafana server logs.
+      Azure AD sign-in logs (for auditing and troubleshooting).
