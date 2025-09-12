@@ -1,68 +1,98 @@
-employees
----------
-id | name   | department | salary
----+--------+------------+--------
-1  | Alice  | HR         | 50000
-2  | Alice  | Finance    | 55000
+Project Summary – Cross-Tenant Authentication with Azure AD for Grafana
+This project enables secure cross-tenant authentication to Grafana using Azure Active Directory (Azure AD) as the identity provider. By integrating Azure AD with Grafana, users from multiple Azure AD tenants can be authenticated and authorized to access Grafana dashboards, ensuring seamless collaboration across organizational boundaries.
+Key goals include:
+Implementing Azure AD OIDC integration with Grafana.
+Supporting cross-tenant access for users outside the primary Azure AD tenant.
+Configuring conditional access and MFA policies for enhanced security.
+Enabling role-based access control (RBAC) in Grafana, mapping Azure AD groups to Grafana roles.
+Ensuring compliance with organizational and industry security standards.
 
-SELECT
-    CASE WHEN e1.name       = e2.name       THEN 'SAME' ELSE 'DIFFERENT' END AS name_comparison,
-    CASE WHEN e1.department = e2.department THEN 'SAME' ELSE 'DIFFERENT' END AS department_comparison,
-    CASE WHEN e1.salary     = e2.salary     THEN 'SAME' ELSE 'DIFFERENT' END AS salary_comparison
-FROM employees e1
-JOIN employees e2
-  ON e1.id = 1   -- first row
- AND e2.id = 2;  -- second row
+For this project, the design audience would be:
+IT Infrastructure & Cloud Architects – responsible for designing and maintaining Azure AD, authentication, and Grafana environments.
+DevOps / Platform Engineers – who configure and operate Grafana, ensuring authentication and authorization work across tenants.
+Security & Identity Management Teams – focused on implementing secure authentication (MFA, conditional access, compliance).
+Application Owners / Dashboard Admins – who manage Grafana access and need to understand RBAC mapping with Azure AD groups.
+External Partner / Cross-Tenant Users (indirect audience) – who will authenticate from other Azure AD tenants but don’t manage the setup.
 
-name_comparison   | department_comparison | salary_comparison
-------------------+-----------------------+-----------------
-SAME              | DIFFERENT             | DIFFERENT
+Design Scope
+The design covers the integration of Azure Active Directory (Azure AD) with Grafana to enable secure cross-tenant authentication and authorization. Specifically, the scope includes:
+Grafana Authentication: Configuring Grafana to use Azure AD OpenID Connect (OIDC) as the identity provider.
+Cross-Tenant Access: Allowing users from multiple Azure AD tenants (partners, subsidiaries, or external collaborators) to authenticate.
+Role-Based Access Control (RBAC): Mapping Azure AD security groups or claims to Grafana roles (Admin, Editor, Viewer).
+Conditional Access & MFA: Enforcing organizational security requirements such as MFA and conditional access policies during login.
+Audit & Monitoring: Logging and monitoring authentication events for security and compliance.
+Documentation & Knowledge Transfer: Providing configuration guidelines and handover documentation for administrators.
+User Provisioning: Enabling Just-In-Time (JIT) provisioning of external users into Grafana based on Azure AD claims.
 
+Design Out of Scope
+The following items are excluded from this design:
+Non-Azure Identity Providers: Integration with other IdPs (Okta, Ping, Google, etc.) is not considered.
+On-Premises Authentication: Direct integration with Active Directory (without Azure AD federation) is not included.
+Custom Grafana Plugins/Extensions: Development or customization of Grafana authentication plugins beyond standard OIDC.
+Authorization within Dashboards: Fine-grained data-level security inside Grafana dashboards (beyond role-based access) is out of scope.
+User Lifecycle Management: Automated provisioning/deprovisioning of users in Azure AD or HR-driven identity management processes.
+Tenant Administration: Managing external tenants’ configurations, policies, or licensing is not part of this project.
 
+Design Assumptions
+Azure AD Premium Licensing: Required features (Conditional Access, MFA, cross-tenant collaboration) are available through appropriate Azure AD licensing.
+Grafana Version Compatibility: The deployed Grafana version supports OIDC integration with Azure AD.
+Cross-Tenant Collaboration Enabled: Azure AD B2B or cross-tenant access settings are properly configured in participating tenants.
+Network Connectivity: Grafana instance can securely connect to Azure AD endpoints (internet access, firewall rules, and DNS resolution in place).
+Security Policies: Organization’s security team approves the use of Azure AD for authentication and enforces MFA/conditional access.
+RBAC Simplicity: Access control is based on standard Grafana roles (Admin, Editor, Viewer), not custom role extensions.
+External User Management: External tenant administrators manage their own users; no direct support will be provided for partner tenant configuration.
+High Availability (HA): Authentication availability depends on Azure AD service uptime; Grafana does not provide fallback authentication.
 
-SELECT 'name'       AS column_name FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.name <> e2.name
-UNION ALL
-SELECT 'department' FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.department <> e2.department
-UNION ALL
-SELECT 'salary'     FROM employees e1 JOIN employees e2 ON e1.id=1 AND e2.id=2 WHERE e1.salary <> e2.salary;
+Design Dependencies
+Azure Active Directory (Azure AD):
+Availability of Azure AD tenant(s) with cross-tenant access enabled (B2B or cross-tenant collaboration).
+Proper configuration of app registrations, client secrets/certificates, and API permissions.
+Grafana Platform:
+Grafana version that supports OpenID Connect (OIDC) integration.
+Access to Grafana configuration files or admin console for identity provider setup.
+Networking & Connectivity:
+Secure connectivity between Grafana and Azure AD endpoints (OAuth/OIDC endpoints must be reachable).
+DNS resolution and firewall rules allowing outbound traffic to Azure AD authentication services.
+Security & Compliance:
+Enforcement of organizational policies such as MFA, conditional access, and session management.
+Alignment with audit and monitoring requirements for authentication logs.
+User & Group Management:
+Azure AD groups properly defined for role-to-role mapping in Grafana.
+External tenant administrators managing their own user identities.
+Operational Dependencies:
+Continuous monitoring of authentication flows for availability and performance.
+Certificate and secret rotation processes in place for app registration.
 
-column_name
------------
-department
-salary
+Design References
+Microsoft Documentation:
+Azure AD cross-tenant access settings
+Azure AD B2B collaboration
+Configure SSO with OIDC
+Conditional Access policies
+Grafana Documentation:
+Configure OIDC Authentication
+Grafana Authentication & Permissions
+Role-based access control in Grafana
+Industry Standards:
+OAuth 2.0 and OpenID Connect Core specifications.
+Security best practices for identity federation and MFA enforcement.
 
-CREATE TABLE demo."USER_ADDRESS"
-(
-    "ADDRESS_ID" bigint,
-    "ADDRESS_TYPE" text COLLATE pg_catalog."default",
-    "ADDRESS_LINE1" text COLLATE pg_catalog."default",
-    "ADDRESS_LINE2" text COLLATE pg_catalog."default",
-    "CITY" text COLLATE pg_catalog."default",
-    "STATE" text COLLATE pg_catalog."default",
-    "ZIP_CODE" text COLLATE pg_catalog."default",
-    "ZIPCODE_EXT" text COLLATE pg_catalog."default",
-    "COUNTRY" text COLLATE pg_catalog."default"
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE demo."USER_ADDRESS"
-    OWNER to postgres;
-
-CREATE TABLE demo."USER_HISTORY"
-(
-    history_id bigint,
-    user_id bigint,
-    operation_type text COLLATE pg_catalog."default",
-    transaction_id bigint,
-    field_name text COLLATE pg_catalog."default",
-    old_value text COLLATE pg_catalog."default",
-    new_value text COLLATE pg_catalog."default",
-    updated_by text COLLATE pg_catalog."default",
-    created_ts date
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE demo."USER_HISTORY"
-    OWNER to postgres;
+Design Error Handling
+Authentication Failures:
+Users denied access due to invalid credentials, expired tokens, or revoked accounts will receive standard Azure AD error messages.
+Grafana will not allow fallback local authentication for external users unless explicitly configured.
+Cross-Tenant Access Issues:
+If external tenant settings (B2B or cross-tenant access) are misconfigured, users will be blocked from authentication.
+Errors should be logged in Grafana and Azure AD sign-in logs for troubleshooting.
+Role Mapping Failures:
+If Azure AD group claims are missing or not mapped, users will be assigned Viewer role by default (least privilege).
+Admins must validate group claim mappings during setup.
+Token & Session Errors:
+Expired or invalid tokens will prompt re-authentication via Azure AD.
+Grafana session timeouts are handled according to configured session policies.
+Network / Connectivity Errors:
+If Grafana cannot reach Azure AD endpoints (network outage, DNS issue, firewall block), authentication will fail, and errors will be logged.
+Monitoring/alerting should be enabled to detect failed login spikes.
+Secret/Certificate Expiry:
+Authentication failures due to expired client secrets or certificates in the Azure AD app registration.
+Proactive rotation processes should be in place to avoid outages.
