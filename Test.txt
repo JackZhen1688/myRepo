@@ -1,1 +1,22 @@
-https://docs.google.com/document/d/12EtzpO2taVPHeYkIqvndglb7uoysmnaeO8mL9pZnCzo/edit?tab=t.0
+Backend
+  Spring Boot
+  REST API
+  OpenAI / Anthropic API
+  PostgreSQL
+  Redis (optional, later)
+
+Frontend
+  Angular 17
+  One clean page:
+  Text area
+  Tone dropdown
+  Generate button
+
+Auth
+  Email + magic link
+  Or Google login only (simplest)
+
+Hosting
+  Backend: Fly.io / Railway
+  Frontend: Vercel / Netlify
+  DB: Supabase / Neon
