@@ -20,3 +20,5 @@ Hosting
   Backend: Fly.io / Railway
   Frontend: Vercel / Netlify
   DB: Supabase / Neon
+   Host: https://hostinger.com                                  (Unlimited Website Host) 
+   GoHighLevel: https://www.gohighlevel.com/   
