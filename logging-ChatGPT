@@ -1,0 +1,119 @@
+<!-- Logstash JSON encoder -->
+<dependency>
+  <groupId>net.logstash.logback</groupId>
+  <artifactId>logstash-logback-encoder</artifactId>
+  <version>7.4</version>
+</dependency>
+
+<!-- Micrometer + tracing (Spring Boot 3+) -->
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-tracing-bridge-otel</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>io.opentelemetry</groupId>
+  <artifactId>opentelemetry-exporter-otlp</artifactId>
+</dependency>
+
+===========================logback-spring.xml
+<configuration>
+
+    <springProperty scope="context" name="serviceName" source="spring.application.name"/>
+
+    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+
+            <customFields>
+                {
+                  "service.name": "${serviceName:-coral-api}"
+                }
+            </customFields>
+            <includeMdc>true</includeMdc>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="JSON_CONSOLE"/>
+    </root>
+
+</configuration>
+============================Correlation ID(CorrelationIdFilter.java)
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.MDC;
+
+import java.io.IOException;
+import java.util.UUID;
+
+public class CorrelationIdFilter implements Filter {
+
+    private static final String HEADER = "X-Request-Id";
+    private static final String MDC_KEY = "correlationId";
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+
+        try {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+            String correlationId = httpRequest.getHeader(HEADER);
+            if (correlationId == null || correlationId.isBlank()) {
+                correlationId = UUID.randomUUID().toString();
+            }
+
+            MDC.put(MDC_KEY, correlationId);
+
+            chain.doFilter(request, response);
+
+        } finally {
+            MDC.clear();
+        }
+    }
+}
+=======================Register it(FilterRegistrationBean.java)
+@Bean
+public FilterRegistrationBean<CorrelationIdFilter> correlationFilter() {
+    FilterRegistrationBean<CorrelationIdFilter> registration = new FilterRegistrationBean<>();
+    registration.setFilter(new CorrelationIdFilter());
+    registration.setOrder(1);
+    return registration;
+}
+=======================logback.xml
+<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+    <customFields>
+        {
+          "service.name": "${serviceName:-coral-api}"
+        }
+    </customFields>
+
+    <includeMdc>true</includeMdc>
+</encoder>
+=========================appliation.yml
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+=======================Health endpoint
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/actuator/health").permitAll()
+            .anyRequest().authenticated()
+        )
+        .csrf(csrf -> csrf.disable());
+
+    return http.build();
+}
+
