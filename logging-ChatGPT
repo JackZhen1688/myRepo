@@ -117,3 +117,77 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
     return http.build();
 }
 
+===================== Implemntion
+package com.coral.api.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOrder(@PathVariable String id) {
+
+        // INFO: request received / state change
+        log.info("Received request to fetch order. orderId={}", id);
+
+        try {
+            // DEBUG: internal processing details
+            log.debug("Fetching order from database. orderId={}", id);
+
+            // Simulate business rule
+            if ("0".equals(id)) {
+                // WARN: business rule violation
+                log.warn("Invalid order ID provided. orderId={}", id);
+                return ResponseEntity.badRequest().body("Invalid order ID");
+            }
+
+            // Simulate data fetch
+            String order = "Order-" + id;
+
+            // INFO: successful state transition
+            log.info("Order fetched successfully. orderId={}", id);
+
+            return ResponseEntity.ok(order);
+
+        } catch (Exception ex) {
+            // ERROR: unhandled exception
+            log.error("Failed to fetch order. orderId={}", id, ex);
+            return ResponseEntity.internalServerError().body("Internal server error");
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createOrder(@RequestBody String request) {
+
+        String correlationId = MDC.get("correlationId");
+
+        // INFO: request received
+        log.info("Create order request received. correlationId={}", correlationId);
+
+        try {
+            // DEBUG: payload details (be careful with sensitive data)
+            log.debug("Create order payload={}", request);
+
+            // Simulate processing
+            String orderId = "12345";
+
+            // INFO: state change
+            log.info("Order created successfully. orderId={}", orderId);
+
+            return ResponseEntity.ok(orderId);
+
+        } catch (Exception ex) {
+            // ERROR: failure
+            log.error("Error while creating order", ex);
+            return ResponseEntity.internalServerError().body("Failed to create order");
+        }
+    }
+}
