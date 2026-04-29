@@ -198,3 +198,20 @@ public class OrderController {
         }
     }
 }
+================================
+<appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <providers>
+            <timestamp/>
+            <logLevel/>
+            <loggerName/>
+            <message/>
+            <mdc/>
+            <globalCustomFields>{"service.name":"coral-api"}</globalCustomFields>
+        </providers>
+    </encoder>
+</appender>
+
+<root level="INFO">
+    <appender-ref ref="JSON"/>
+</root>
