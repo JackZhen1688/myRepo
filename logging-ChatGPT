@@ -24,6 +24,13 @@
     <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
 net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder
+ <providers>
+        <timestamp/>
+        <logLevel/>
+        <loggerName/>
+        <message/>
+        <mdc/>
+ </providers>
             <customFields>
                 {
                   "service.name": "${serviceName:-coral-api}"
