@@ -215,3 +215,165 @@ public class OrderController {
 <root level="INFO">
     <appender-ref ref="JSON"/>
 </root>
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+import React from "react";
+
+export default function OfferFormPage() {
+  return (
+    <div className="min-h-screen bg-gray-100 p-6 flex items-start justify-center">
+      <div className="w-full max-w-4xl rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        {/* Header */}
+        <div className="mb-6">
+          <h1 className="text-xl font-semibold text-gray-900">
+            Basic Information
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">
+            Core details about the offer
+          </p>
+        </div>
+
+        {/* FieldSet */}
+        <FieldSet>
+          <FieldGroup>
+            {/* Offer Name */}
+            <Field>
+              <Label required>Offer Name</Label>
+
+              <Input
+                placeholder="e.g., Amazon 3x Points"
+                type="text"
+              />
+            </Field>
+
+            {/* Offer Type */}
+            <Field>
+              <Label required>Offer Type</Label>
+
+              <Select>
+                <option>Points Multiplier</option>
+                <option>Cash Back</option>
+                <option>Discount</option>
+                <option>Bonus Reward</option>
+              </Select>
+            </Field>
+
+            {/* Vendor */}
+            <Field>
+              <Label>Vendor (Optional)</Label>
+
+              <Input
+                placeholder="e.g., Amazon, Target, Starbucks"
+                type="text"
+              />
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               UI Components                                */
+/* -------------------------------------------------------------------------- */
+
+function FieldSet({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <fieldset className="space-y-5">{children}</fieldset>;
+}
+
+function FieldGroup({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <div className="space-y-5">{children}</div>;
+}
+
+function Field({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <div className="flex flex-col gap-2">{children}</div>;
+}
+
+function Label({
+  children,
+  required = false,
+}: {
+  children: React.ReactNode;
+  required?: boolean;
+}) {
+  return (
+    <label className="text-sm font-medium text-gray-800">
+      {children}
+      {required && <span className="ml-1 text-red-500">*</span>}
+    </label>
+  );
+}
+
+function Input({
+  placeholder,
+  type = "text",
+}: {
+  placeholder?: string;
+  type?: string;
+}) {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      className="
+        h-11
+        w-full
+        rounded-xl
+        border
+        border-gray-300
+        bg-white
+        px-4
+        text-sm
+        text-gray-900
+        placeholder:text-gray-400
+        outline-none
+        transition
+        focus:border-gray-400
+        focus:ring-2
+        focus:ring-gray-200
+      "
+    />
+  );
+}
+
+function Select({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <select
+      className="
+        h-11
+        w-56
+        rounded-xl
+        border
+        border-gray-300
+        bg-white
+        px-4
+        text-sm
+        text-gray-900
+        outline-none
+        transition
+        focus:border-gray-400
+        focus:ring-2
+        focus:ring-gray-200
+      "
+    >
+      {children}
+    </select>
+  );
+}
